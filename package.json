@@ -1,0 +1,57 @@
+{
+    "name": "viteelectrontemplate_",
+    "version": "1.0.0",
+    "main": "dist-electron/main.js",
+    "type": "module",
+    "scripts": {
+        "start": "concurrently \"cross-env BROWSER=none vite\" \"wait-on http://localhost:3000 && electron .\"",
+        "build": "npm run clean && npm run build:ui && npm run build:electron",
+        "build:ui": "vite build --config vite.config.ts",
+        "build:electron": "tsc -p tsconfig.electron.json",
+        "build:electron:watch": "tsc -p tsconfig.electron.json --watch",
+        "dev:vite": "concurrently \"cross-env BROWSER=none vite\" \"npm run build:electron:watch\"",
+        "dev": "concurrently \"cross-env BROWSER=none vite\" \"npm run build:electron:watch\" \"wait-on http://localhost:3000 && nodemon\"",
+        "clean": "rimraf dist dist-electron",
+        "postinstall": "electron-builder install-app-deps",
+        "make": "npm run build && electron-builder"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "build": {
+        "appId": "com.lifeutill.viteelectrontemplate_",
+        "files": [
+            "dist/**/*",
+            "dist-electron/**/*"
+        ],
+        "directories": {
+            "buildResources": "assets",
+            "output": "release"
+        },
+        "win": {
+            "target": "portable"
+        },
+        "mac": {
+            "target": []
+        },
+        "linux": {
+            "target": []
+        }
+    },
+    "description": "## Electron + Vite + TypeScript + NodeMon",
+    "devDependencies": {
+        "@types/electron": "^1.6.10",
+        "@types/node": "^22.5.0",
+        "concurrently": "^8.2.2",
+        "copyfiles": "^2.4.1",
+        "cross-env": "^7.0.3",
+        "electron": "^32.0.1",
+        "electron-builder": "^24.13.3",
+        "electron-is-dev": "^3.0.1",
+        "nodemon": "^3.1.4",
+        "rimraf": "^6.0.1",
+        "typescript": "^5.5.4",
+        "vite": "^5.4.2",
+        "wait-on": "^8.0.0"
+    }
+}

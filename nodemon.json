@@ -1,0 +1,6 @@
+{
+    "watch": ["src-electron"],
+    "ext": "js,ts,json",
+    "ignore": ["src-electron/preload.ts"],
+    "exec": "electron ."
+}

@@ -32,6 +32,7 @@ root\
 
 ---
 
+-   package.json
 -   vite.config.ts
 -   tsconfig.json
 -   tsconfig.electron.json
